@@ -1,0 +1,2248 @@
+<MyScreenManager>
+	LoginScreen:
+	UserScreen:
+	AdminScreen:
+	AccountSettingsScreen:
+	ChangeLoginScreen:
+	ChangePwdScreen:
+	ChangeNameScreen:
+	ChangeSnameScreen:
+	ChangeDepScreen:
+	ChangeRigScreen:
+	ChooseUserScreen:
+	AddUserScreen:
+	DeleteUserScreen:
+	ManageEquipScreen:
+	AddUsableEqpScreen:
+	AddUnUsableEqpScreen:
+	AddUsableEqpKindScreen:
+	AddUnUsableEqpKindScreen:
+	AdvancedEqpScreen:
+	DeleteUsKindScreen:
+	ConfirmDeleteUsKindScreen:
+	DeleteUnUsKindScreen:
+	ConfirmDeleteUnUsKindScreen:
+	DebtUsersScreen:
+	UnavailUsEqpScreen:
+	UnavailUnUsEqpScreen:
+	MaxBorrowScreen:
+	ConfirmDeleteEqpScreen:
+	ModUsEqpScreen:
+	ModUnUsEqpScreen:
+	ModUsEqpKindScreen:
+	ModUnUsEqpKindScreen:
+	ModNameUsableEqpScreen:
+	ModNameUnUsableEqpScreen:
+	ModNrUsableEqpScreen:
+	BrowseEquipScreen:
+	ChooseTypeOrderBrowseScreen:
+	BrowseUsOrdersScreen:
+	BrowseUnUsOrdersScreen:
+	DetailsUsOrdersScreen:
+	DetailsUnUsOrdersScreen:
+	GiveBackEquipScreen:
+	ConfirmReturningEqpScreen:
+	ChooseTypeOrderScreen:
+	MakeUsOrderScreen:
+	MakeUnUsOrderScreen
+</MyScreenManager>
+
+<LoginScreen>
+	name: "ekran logowania"
+	log: log
+	pwd: pwd
+	id: parent
+
+	BoxLayout:
+		orientation: "vertical"
+		spacing: 10
+
+		GridLayout:
+			cols: 2
+			rows: 2
+			row_force_default: False
+			row_default_height: 40
+
+			Label:
+				text: "login"
+			TextInput:
+				id: log
+				multiline: False
+				text: ""
+			Label:
+				text: "haslo"
+			TextInput:
+				id: pwd
+				multiline: False
+				password: True
+				text: ""
+		Button:
+			text: "Zaloguj sie"
+			on_press: parent.LoginTry()
+</LoginScreen>
+
+<UserScreen>
+	name: "opcje czlonka kola"
+
+	lendtakebtn: lendtakebtn
+	settingbtn: settingbtn
+	givebackbtn: givebackbtn
+	searchbtn: searchbtn
+
+	id: parent
+	BoxLayout:
+		orientation: "vertical"
+		spacing: 0
+		GridLayout:
+			cols: 2
+			rows: 2 
+
+			Button:
+				id: lendtakebtn
+				text: "Wypozycz/pobierz sprzet"
+				on_press: parent.GetToMakeOrder()
+			Button:
+				id: settingbtn
+				text: "Ustawienia konta"
+				on_press: parent.GetToSettings()
+			Button:
+				id: givebackbtn
+				text: "Oddaj sprzet"
+				on_press: parent.GetToReturnEqp()
+			Button:
+				id: searchbtn
+				text: "Przegladaj sprzet"
+				on_press: parent.GetToBrowseEqp()
+		Button:
+			text: "Wyloguj"
+			size_hint: (1, 0.33)	
+			on_press: parent.LogOut()
+			
+
+
+</UserScreen>
+
+<AdminScreen>
+	name: "opcje administratora"
+	
+	lendtakebtn: lendtakebtn
+	settingbtn: settingbtn
+	givebackbtn: givebackbtn
+	
+	usermgbtn: usermgbtn
+	gearmgbtn: gearmgbtn
+	searchbtn: searchbtn
+	id: parent
+
+	BoxLayout:
+		orientation: "vertical"
+        spacing: 0
+
+		GridLayout:
+			cols: 2
+			rows: 4
+			row_force_default: False
+			row_default_height: 60
+			Button:
+				id: lendtakebtn
+				text: "Wypozycz/pobierz sprzet"
+				on_press: parent.GetToMakeOrder()
+			Button:
+				id: settingbtn
+				text: "Ustawienia konta"
+				on_press: parent.GetToSettings()
+			Button:
+				id: givebackbtn
+				text: "Oddaj sprzet"
+				on_press: parent.GetToReturnEqp()
+			Button:
+				id: searchbtn
+				text: "Przegladaj sprzet"
+				on_press: parent.GetToBrowseEqp()
+			Button:
+				id: usermgbtn
+				text: "Zarzadzaj sprzetem"
+				on_press: parent.GetToMgEqp()
+			Button:
+				id: gearmgbtn
+				text: "Zarzadzaj uzytkownikami"
+				on_press: parent.GetToMgUsers()
+		
+			Button:
+				text: "Przegladaj zamowienia"
+				on_press: parent.GetToBrowseOrders()
+
+			Button:
+				text: "Wyloguj"
+				on_press: parent.LogOut()
+
+			
+</AdminScreen>
+	
+<AccountSettingsScreen>
+	name: "ustawienia konta"
+
+	logcont: logcont
+    pwdcont: pwdcont
+    namecont: namecont
+    snamecont: snamecont
+    depcont: depcont
+    rigcont: rigcont
+
+    logbtn: logbtn
+    pwdbtn: pwdbtn
+    namebtn: namebtn
+    snamebtn: snamebtn
+    depbtn: depbtn
+    rigbtn: rigbtn
+
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+	
+		GridLayout:
+			cols: 3
+			size_hint: 1, 0.8
+			pos_hint: {"top": 1}
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Login: "
+			Label:
+				id: logcont
+				size_hint: 0.33, 0.125
+				text: "None"
+			Button:
+				id: logbtn
+				size_hint: 0.33, 0.125
+				text: "Zmien login"
+				on_press: parent.ChangeLogin()
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Haslo: "
+			Label:
+				id: pwdcont
+				size_hint: 0.33, 0.125
+				text: "********"
+			Button:
+				id: pwdbtn
+				size_hint: 0.33, 0.125
+				text: "Zmien haslo"
+				on_press: parent.ChangePwd()
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Imie: "
+			Label:
+				id: namecont
+				size_hint: 0.33, 0.125
+				text: "None"
+			Button:
+				id: namebtn
+				size_hint: 0.33, 0.125
+				text: "Zmien imie"
+				on_press: parent.ChangeName()
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Nazwisko: "
+			Label:
+				id: snamecont
+				size_hint: 0.33, 0.125
+				text: "None"
+			Button:	
+				id: snamebtn
+				size_hint: 0.33, 0.125
+				text: "Zmien nazwisko"
+				on_press: parent.ChangeSname()
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Dzial: "
+			Label:
+				id: depcont
+				size_hint: 0.33, 0.125
+				text: "None"
+			Button:
+				id: depbtn
+				size_hint: 0.33, 0.125
+				text: "Zmien dzial"
+				on_press: parent.ChangeDep()
+			Label:
+				size_hint: 0.33, 0.125
+				text: "Uprawnienia: "
+			Label:
+				id: rigcont
+				size_hint: 0.33, 0.125
+				text: "None"
+			Button:
+				id: rigbtn
+				size_hint: 0.33, 0.125
+				text: "Zmien uprawnienia"
+				on_press: parent.ChangeRig()
+		Button:
+			id: bckbtn
+			size_hint: 0.3, 0.2
+			pos_hint: {"x": 0.35}
+			text: "Powrot"
+			on_press: parent.GetBack()
+</AccountSettingsScreen>
+
+<ChangeLoginScreen>
+	name: "zmiana loginu"
+
+	newlog: newlog
+	newlog2: newlog2
+	bckbtn: bckbtn
+	accbtn: accbtn
+
+	id: parent
+
+	GridLayout:
+		rows: 3
+		cols: 2
+		Label: 
+			text: "Nowy login: "
+		TextInput:
+			id: newlog
+			text: ""
+			multiline: False
+		Label:
+			text: "Powtorz: "
+		TextInput:
+			id: newlog2
+			text: ""
+			multiline: False
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button: 
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewLogin()
+</ChangeLoginScreen>
+
+<ChangePwdScreen>
+	name: "zmiana hasla"
+	oldpwd: oldpwd
+	newpwd: newpwd
+	newpwd2: newpwd2
+	bckbtn: bckbtn
+	accbtn: accbtn
+
+	id: parent
+
+	GridLayout:
+		rows: 4
+		cols: 2
+		Label:
+			text: "Stare haslo:"
+		TextInput:
+			id: oldpwd
+			text: ""
+			multiline: False
+			password: True
+		Label: 
+			text: "Nowe haslo: "
+		TextInput:
+			id: newpwd
+			text: ""
+			multiline: False
+			password: True
+		Label:
+			text: "Powtorz: "
+		TextInput:
+			id: newpwd2
+			text: ""
+			multiline: False
+			password: True
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button: 
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewPwd()
+</ChangePwdScreen>
+	
+<ChangeNameScreen>
+	name: "zmiana imienia"
+	newname: newname
+	newname2: newname2
+	bckbtn: bckbtn
+	accbtn: accbtn
+
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 3
+		
+		Label:
+			text: "Nowe imie"
+		TextInput:
+			id: newname
+			text: ""
+			multiline: False
+		Label:
+			text: "Powtorz"
+		TextInput:
+			id: newname2
+			text: ""
+			multiline: False
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button:
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewName()
+		
+</ChangeNameScreen>
+
+<ChangeSnameScreen>
+	name: "zmiana nazwiska"
+	newsname: newsname
+	newsname2: newsname2
+	bckbtn: bckbtn
+	accbtn: accbtn
+
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 3
+
+		Label:
+			text: "Nowe nazwisko"
+		TextInput:
+			id: newsname
+			text: ""
+			multiline: False
+		Label:
+			text: "Powtorz"
+		TextInput:
+			id: newsname2
+			text: ""
+			multiline: False
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button:
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewSname()
+</ChangeSnameScreen>
+
+<ChangeDepScreen>
+	name: "zmiana dzialu"
+	bckbtn: bckbtn
+	depsel: depsel
+	id: parent
+
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Nowy dzial: "
+		Spinner:
+			id: depsel
+			text: "Wybierz dzial"
+			values: parent.departments 
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button:
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewDep()
+</ChangeDepScreen>
+
+<ChangeRigScreen>
+	name: "zmiana uprawnien"
+	bckbtn: bckbtn
+	rigsel: rigsel
+	id: parent
+
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Nowe uprawnienia: "
+		Spinner:
+			id: rigsel
+			text: "Wybierz uprawnienia"
+			values: parent.rights			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		Button:
+			id: accbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitNewRig()
+</ChangeRigScreen>
+
+<ChooseUserScreen>
+	name: "wybierz uzytkownika"
+	usrlst: usrlst
+	bckbtn: bckbtn
+	delbtn: delbtn
+	modbtn: modbtn
+	addbtn: addbtn
+	id: parent
+
+	FloatLayout:
+		
+		UserList:
+			id: usrlst
+			size_hint: 1, 0.8
+			pos_hint: {"top": 1}
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.2
+			Button:
+				id: delbtn
+				size_hint: 0.5, 0.1
+				text: "Usun uzytkownika"
+				on_press: parent.GetToDel()
+			Button:
+				id: modbtn
+				size_hint: 0.5, 0.1
+				text: "Modyfikuj dane"
+				on_press: parent.GetToMod()
+			Button:
+				id: addbtn
+				size_hint: 0.5, 0.1
+				text: "Dodaj uzytkownika"
+				on_press: parent.GetToAdd()
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+	
+
+</ChooseUserScreen>
+
+<SelectableLabel>
+	canvas.before:
+		Color:
+			rgba: (.0, 0.9, .1, .3) if self.selected else (0, 0, 0, 1)
+		Rectangle:
+			pos: self.pos
+			size: self.size
+</SelectableLabel>
+
+<UserList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        multiselect: False
+        touch_multiselect: False
+</UserList>
+
+<AddUserScreen>
+	name: "dodaj uzytkownika"
+	confbtn: confbtn
+	bckbtn: bckbtn
+	newname: newname
+	newsname: newsname
+	newlogin: newlogin
+	newpwd: newpwd
+	newpwd2: newpwd2
+	depsel: depsel
+	rigsel: rigsel
+	
+	id: parent
+
+	BoxLayout:
+		orientation: "vertical"
+		spacing: 10
+
+		GridLayout:
+			cols: 2
+			rows: 8
+
+			Label:
+				text: "Imie"
+			TextInput:
+				id: newname
+				multiline: False
+				text: ""
+				
+			Label:
+				text: "Nazwisko"
+			TextInput:
+				id: newsname
+				multiline: False
+				text: ""
+				
+			Label:
+				text: "Login"
+			TextInput:
+				id: newlogin
+				multiline: False
+				text: ""	
+				
+			Label:
+				text: "Haslo"
+			TextInput:
+				id: newpwd
+				multiline: False
+				password: True
+				text: ""
+				
+			Label:
+				text: "Powtorz haslo"
+			TextInput:
+				id: newpwd2
+				multiline: False
+				password: True
+				text: ""	
+			
+			Label:
+				text: "Dzial"
+			Spinner:
+				id: depsel
+				text: "wybierz dzial"
+				values: parent.departments
+				
+			Label:
+				text: "Uprawnienia"
+			Spinner:
+				id: rigsel
+				text: "wybierz uprawnienia"
+				values: parent.rights
+
+				
+			Button:
+				text: "Zatwierdz"
+				id: confbtn
+				on_press: parent.SubmitNewUsr()
+			
+			Button:
+				text: "Powrot"
+				id: bckbtn
+				on_press: parent.GetBack()
+
+</AddUserScreen>
+
+<DeleteUserScreen>
+	name: "usun uzytkownika"
+	nobtn: nobtn
+	yesbtn: yesbtn
+	usrcont: usrcont
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Usuwasz uzytkownika:"
+		Label:
+			id: usrcont	
+			text: "None"
+		Button:
+			id: yesbtn
+			text: "Zatwierdz"
+			size_hint: (1, 0.5)
+			on_press: parent.SubmitDeletion()
+		Button:
+			id: nobtn
+			text: "Anuluj"
+			size_hint: (1, 0.5)
+			on_press: parent.GetBack()
+	
+</DeleteUserScreen>
+
+<ManageEquipScreen>
+	name: "zarzadzaj sprzetem"
+	typesel: typesel
+	kindsel: kindsel
+	srch: srch
+	srchbtn: srchbtn
+	eqplst: eqplst
+	addusbtn: addusbtn
+	addunusbtn: addunusbtn
+	adduskdbtn: adduskdbtn
+	addunuskdbtn: addunuskdbtn
+	maxborbtn: maxborbtn
+	deluskdbtn: deluskdbtn
+	delunuskdbtn: delunuskdbtn
+	advbtn: advbtn
+	delbtn: delbtn
+	modbtn: modbtn
+	bckbtn: bckbtn
+	
+	id: parent
+
+	BoxLayout:
+		orientation: "horizontal"
+		spacing: 0
+		
+		FloatLayout:
+					
+			GridLayout:
+				cols: 2
+				size_hint: 1, 0.2
+				pos_hint: {"top": 1}
+			
+				Spinner:
+					id: typesel
+					text: "Wybierz typ"
+					values: parent.type
+					on_text: parent.UpdateSpinner2(typesel.text)
+					size_hint: 0.5, 0.10
+				Spinner:
+					id: kindsel
+					text: "Wybierz rodzaj"	
+					values: parent.kind
+					on_text: parent.UpdateContentKind(kindsel.text)
+					size_hint: 0.5, 0.10
+					
+				TextInput:
+					id: srch
+					multiline: False
+					text: ""
+					size_hint: 0.5, 0.10
+				Button:
+					id: srchbtn
+					text: "Szukaj"
+					size_hint: 0.5, 0.10
+					on_press: parent.Search(typesel.text, kindsel.text, srch.text)
+						
+			EqpList:
+				id: eqplst
+				size_hint: 1, 0.8
+				pos_hint: {"x": 0}
+				
+		
+				
+			
+		GridLayout:
+			cols: 1
+			rows: 11
+			Button:
+				id: addusbtn
+				text: "Dodaj sprzet zuzywalny"
+				on_press: parent.GetToAddUs()
+			Button:
+				id: addunusbtn
+				text: "Dodaj sprzet niezuzywalny"
+				on_press: parent.GetToAddUnUs()
+			Button:
+				id: adduskdbtn
+				text: "Dodaj rodzaj sprzetu zuzywalnego"
+				on_press: parent.GetToAddUsKind()
+			Button:
+				id: addunuskdbtn
+				text: "Dodaj rodzaj sprzetu niezuzywalnego"
+				on_press: parent.GetToAddUnUsKind()
+			Button:
+				id: maxborbtn
+				text: "Zmien maksymalne wypozyczenie"
+				on_press: parent.GetToMaxBor()			
+			Button:
+				id: deluskdbtn
+				text: "Usun rodzaj sprzetu zuzywalnego"
+				on_press: parent.GetToDelUsKind()
+			Button:
+				id: delunuskdbtn
+				text: "Usun rodzaj sprzetu niezuzywalnego"
+				on_press: parent.GetToDelUnUsKind()
+			Button:
+				id: advbtn
+				text: "Zaawansowane"	
+				on_press: parent.GetToAdv()
+			Button:
+				id: delbtn
+				text: "Usun sprzet"
+				on_press: parent.GetToDelEqp()
+			Button:
+				id: modbtn
+				text: "Modyfikuj sprzet"
+				on_press: parent.GetToMod()
+			Button:
+				id: bckbtn
+				text: "Powrot"	
+				on_press: parent.GetBack()
+	
+
+</ManageEquipScreen>
+
+<EqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        multiselect: False
+        touch_multiselect: False
+</EqpList>
+
+<AddUsableEqpScreen>
+	name: "dodaj sprzet zuzywalny"
+	eqpname: eqpname
+	amount: amount
+	kindsel: kindsel
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 4
+		
+		Label:
+			text: "Nazwa"
+		TextInput:
+			id: eqpname
+			multiline: False
+			text: ""
+			
+		Label:
+			text: "Ilosc"
+		TextInput:
+			id: amount
+			multiline: False
+			text: ""
+			
+		Label: 
+			text: "Rodzaj"
+		Spinner:
+			id: kindsel
+			values: parent.kind
+			text: "Wybierz rodzaj"
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitAdding()
+			
+</AddUsableEqpScreen>	
+
+<AddUnUsableEqpScreen>
+	name: "dodaj sprzet niezuzywalny"
+	eqpname: eqpname
+	kindsel: kindsel
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 3
+		
+		Label:
+			text: "Nazwa"
+		TextInput:
+			id: eqpname
+			multiline: False
+			text: ""
+			
+		Label: 
+			text: "Rodzaj"
+		Spinner:
+			id: kindsel
+			values: parent.kind
+			text: "Wybierz rodzaj"
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitAdding()
+			
+</AddUnUsableEqpScreen>	
+
+<AddUsableEqpKindScreen>
+	name: "dodaj rodzaj sprzetu zuzywalnego"
+	kindname: kindname
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label:
+			text: "Nazwa rodzaju"
+		TextInput:
+			id: kindname
+			multiline: False
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitAdding()
+			
+</AddUsableEqpKindScreen>
+
+<AddUnUsableEqpKindScreen>
+	name: "dodaj rodzaj sprzetu niezuzywalnego"
+	kindname: kindname
+	maxbor: maxbor
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 3
+		
+		Label:
+			text: "Nazwa rodzaju"
+		TextInput:
+			id: kindname
+			multiline: False
+			text: ""
+		
+		Label:
+			text: "Maksymalne wypozyczenie (w dniach)"
+		TextInput:
+			id: maxbor
+			multiline: False
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitAdding()
+			
+</AddUnUsableEqpKindScreen>
+
+<MaxBorrowScreen>
+	name: "zmien maksymalne wypozyczenie"
+	kindsel: kindsel
+	currentmaxbor: currentmaxbor
+	newmaxbor: newmaxbor
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 4
+		
+		Label: 
+			text: "Rodzaj"
+		Spinner:
+			id: kindsel
+			values: parent.kind
+			text: "Wybierz rodzaj"
+			on_text: parent.UpdateLabel()
+		
+		Label: 
+			text: "Obecny maksymalny czas wypozyczenia"
+		Label:
+			id: currentmaxbor
+			text: ""
+		
+		Label:
+			text: "Nowy maksymalny czas wypozyczenia"
+		TextInput:
+			id: newmaxbor
+			multiline: False
+			padding: [140, 6, 6, 6]
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</MaxBorrowScreen>	
+
+<AdvancedEqpScreen>
+	name: "zaawansowane zarzadzanie sprzetem"
+	debtusrbtn: debtusrbtn
+	unreturneqpbtn: unreturneqpbtn
+	unavaileqpbtn: unavaileqpbtn
+	bckbtn: bckbtn
+
+	id: parent
+
+	GridLayout:
+		cols: 1
+		rows: 4
+		
+		Button:
+			id: debtusrbtn
+			text: "Uzytkownicy zadluzeni"
+			on_press: parent.GetToDebtUsers()
+					
+		Button:
+			id: unreturneqpbtn
+			text: "Niezwrocony sprzet niezuzywalny"
+			on_press: parent.GetToUnavailUnUsEqp()
+		
+		Button:
+			id: unavaileqpbtn
+			text: "Niedostepny sprzet zuzywalny"
+			on_press: parent.GetToUnavailUsEqp()
+
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+
+
+</AdvancedEqpScreen>
+
+<DeleteUsKindScreen>
+	name: "usun rodzaj sprzetu zuzywalnego"
+	uskindlst: uskindlst
+	delbtn: delbtn 
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+		
+		UsKindList:
+			id: uskindlst
+			size_hint: 1, 0.9
+			pos_hint: {"top": 1}
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.1
+		
+			Button:
+				id: delbtn
+				size_hint: 0.5, 0.1
+				text: "Usun"
+				on_press: parent.GetToDel()
+					
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+		
+
+</DeleteUsKindScreen>
+
+<DeleteUnUsKindScreen>
+	name: "usun rodzaj sprzetu niezuzywalnego"
+	unuskindlst: unuskindlst
+	delbtn: delbtn 
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+		
+		UnUsKindList:
+			id: unuskindlst
+			pos_hint: {"top": 1}
+			size_hint: 1, 0.9
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.1
+		
+			Button:
+				id: delbtn
+				size_hint: 0.5, 0.1
+				text: "Usun"
+				on_press: parent.GetToDel()
+					
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+		
+
+</DeleteUnUsKindScreen>
+
+<ConfirmDeleteUsKindScreen>
+	name: "potwierdz usuniecie rodzaju sprzetu zuzywalnego"
+	confbtn: confbtn 
+	bckbtn: bckbtn
+	kindcont: kindcont
+
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Usuwasz rodzaj:"
+		Label:
+			id: kindcont	
+			text: ""
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitDeletion()
+		Button:
+			id: bckbtn
+			text: "Anuluj"
+			on_press: parent.GetBack()
+		
+
+</ConfirmDeleteUsKindScreen>
+
+<ConfirmDeleteUnUsKindScreen>
+	name: "potwierdz usuniecie rodzaju sprzetu niezuzywalnego"
+	confbtn: confbtn 
+	bckbtn: bckbtn
+	kindcont: kindcont
+
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Usuwasz rodzaj:"
+		Label:
+			id: kindcont	
+			text: ""
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitDeletion()
+		Button:
+			id: bckbtn
+			text: "Anuluj"
+			on_press: parent.GetBack()
+		
+
+</ConfirmDeleteUnUsKindScreen>
+
+<UsKindList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UsKindList>
+
+<UnUsKindList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnUsKindList>
+
+<DebtUsersList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</DebtUsersList>
+
+<DebtUsersScreen>
+	name: "zadluzeni uzytkownicy"
+	debtusrlst: debtusrlst
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+	
+		DebtUsersList:
+			id: debtusrlst
+			pos_hint: {"top": 1}
+			size_hint: 1, 0.9
+
+		Button:
+			id: bckbtn
+			size_hint: 1, 0.1
+			text: "Powrot"
+			on_press: parent.GetBack()
+
+</DebtUsersScreen>
+
+<UnavailUsEqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnavailUsEqpList>
+
+<UnavailUnUsEqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnavailUnUsEqpList>
+
+<UnavailUsEqpScreen>
+	name: "niedostepny sprzet zuzywalny"
+	unavaileqplst: unavaileqplst
+	modbtn: modbtn
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+		
+		UnavailUsEqpList:
+			id: unavaileqplst
+			size_hint: 1, 0.9
+			pos_hint: {"top": 1}
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.1
+			
+			Button:
+				id: modbtn
+				size_hint: 0.5, 0.1
+				text: "Modyfikuj"
+				on_press: parent.GetToMod()
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+
+</UnavailUsEqpScreen>
+
+<UnavailUnUsEqpScreen>
+	name: "niedostepny sprzet niezuzywalny"
+	unavaileqplst: unavaileqplst
+	modbtn: modbtn
+	bckbtn: bckbtn
+
+	id: parent
+
+	FloatLayout:
+		
+		UnavailUnUsEqpList:
+			id: unavaileqplst
+			size_hint: 1, 0.9
+			pos_hint: {"top": 1}
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.1
+			
+			Button:
+				id: modbtn
+				size_hint: 0.5, 0.1
+				text: "Modyfikuj"
+				on_press: parent.GetToMod()
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+
+</UnavailUnUsEqpScreen>
+
+<ConfirmDeleteEqpScreen>
+	name: "potwierdz usuniecie sprzetu"
+	confbtn: confbtn 
+	bckbtn: bckbtn
+	eqpcont: eqpcont
+
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Usuwasz sprzet:"
+		Label:
+			id: eqpcont	
+			text: ""
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitDeletion()
+		Button:
+			id: bckbtn
+			text: "Anuluj"
+			on_press: parent.GetBack()
+		
+
+</ConfirmDeleteEqpScreen>
+
+<ModUsEqpScreen>
+	name: "modyfikuj sprzet zuzywalny"
+
+	namecont: namecont
+    kindcont: kindcont
+    numbercont: numbercont
+
+    namebtn: namebtn
+    kindbtn: kindbtn
+    numberbtn: numberbtn
+	
+    bckbtn: bckbtn
+    delbtn: delbtn
+
+	id: parent
+
+	FloatLayout:
+	
+		GridLayout:
+			cols: 3
+			size_hint: 1, 0.8
+			pos_hint: {"top": 1}
+			
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Nazwa: "
+			Label:
+				id: namecont
+				size_hint: 0.5, 0.33
+				text: "None"
+			Button:
+				id: namebtn
+				size_hint: 0.25, 0.33
+				text: "Zmien nazwe"
+				on_press: parent.GetToModName()
+				
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Rodzaj: "
+			Label:
+				id: kindcont
+				size_hint: 0.5, 0.33
+				text: ""
+			Button:
+				id: kindbtn
+				size_hint: 0.25, 0.33
+				text: "Zmien rodzaj"
+				on_press: parent.GetToModKind()
+				
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Liczba: "
+			Label:
+				id: numbercont
+				size_hint: 0.5, 0.33
+				text: "None"
+			Button:
+				id: numberbtn
+				size_hint: 0.25, 0.33
+				text: "Zmien liczbe"
+				on_press: parent.GetToModNr()
+		
+		Button:
+			id: delbtn
+			size_hint: 0.5, 0.2
+			pos_hint: {"x": 0}
+			text: "Usun"
+			on_press: parent.SubmitDeletion()
+		
+		Button:
+			id: bckbtn
+			size_hint: 0.5, 0.2
+			pos_hint: {"x": 0.5}
+			text: "Powrot"
+			on_press: parent.GetBack()
+</ModUsEqpScreen>
+
+<ModUnUsEqpScreen>
+	name: "modyfikuj sprzet niezuzywalny"
+
+	namecont: namecont
+    kindcont: kindcont
+    statuscont: statuscont
+
+    namebtn: namebtn
+    kindbtn: kindbtn
+    statusbtn: statusbtn
+	
+    bckbtn: bckbtn
+    delbtn: delbtn
+
+	id: parent
+
+	FloatLayout:
+	
+		GridLayout:
+			cols: 3
+			size_hint: 1, 0.8
+			pos_hint: {"top": 1}
+			
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Nazwa: "
+			Label:
+				id: namecont
+				size_hint: 0.5, 0.33
+				text: "None"
+			Button:
+				id: namebtn
+				size_hint: 0.25, 0.33
+				text: "Zmien nazwe"
+				on_press: parent.GetToModName()
+				
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Rodzaj: "
+			Label:
+				id: kindcont
+				size_hint: 0.5, 0.33
+				text: ""
+			Button:
+				id: kindbtn
+				size_hint: 0.25, 0.33
+				text: "Zmien rodzaj"
+				on_press: parent.GetToModKind()
+				
+			Label:
+				size_hint: 0.25, 0.33
+				text: "Status: "
+			Label:
+				id: statuscont
+				size_hint: 0.5, 0.33
+				text: "None"
+			Button:
+				id: statusbtn
+				size_hint: 0.25, 0.33
+				text: "Zmien status"
+				on_press: parent.GetToReturn()
+		
+		Button:
+			id: delbtn
+			size_hint: 0.5, 0.2
+			pos_hint: {"x": 0}
+			text: "Usun"
+			on_press: parent.SubmitDeletion()
+		
+		Button:
+			id: bckbtn
+			size_hint: 0.5, 0.2
+			pos_hint: {"x": 0.5}
+			text: "Powrot"
+			on_press: parent.GetBack()
+</ModUnUsEqpScreen>
+
+<ModUsEqpKindScreen>
+	name: "zmien rodzaj sprzetu zuzywalnego"
+	kindsel: kindsel
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label: 
+			text: "Rodzaj"
+		Spinner:
+			id: kindsel
+			values: parent.kind
+			text: "Wybierz rodzaj"
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</ModUsEqpKindScreen>	
+
+<ModUnUsEqpKindScreen>
+	name: "zmien rodzaj sprzetu niezuzywalnego"
+	kindsel: kindsel
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label: 
+			text: "Rodzaj"
+		Spinner:
+			id: kindsel
+			values: parent.kind
+			text: "Wybierz rodzaj"
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</ModUnUsEqpKindScreen>
+
+<ModNameUsableEqpScreen>
+	name: "zmien nazwe sprzetu zuzywalnego"
+	neweqpname: neweqpname
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label:
+			text: "Nowa nazwa sprzetu:"
+		TextInput:
+			id: neweqpname
+			multiline: False
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</ModNameUsableEqpScreen>
+
+<ModNameUnUsableEqpScreen>
+	name: "zmien nazwe sprzetu niezuzywalnego"
+	neweqpname: neweqpname
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label:
+			text: "Nowa nazwa sprzetu:"
+		TextInput:
+			id: neweqpname
+			multiline: False
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</ModNameUnUsableEqpScreen>
+
+<ModNrUsableEqpScreen>
+	name: "zmien liczbe sprzetu zuzywalnego"
+	neweqpnr: neweqpnr
+	bckbtn: bckbtn
+	confbtn: confbtn
+	
+	id: parent
+	
+	GridLayout:
+		cols: 2
+		rows: 2
+		
+		Label:
+			text: "Nowa liczba sprzetu:"
+		TextInput:
+			id: neweqpnr
+			multiline: False
+			text: ""
+			
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+		
+		Button:
+			id: confbtn
+			text: "Zatwierdz"
+			on_press: parent.SubmitChange()
+			
+</ModNrUsableEqpScreen>
+
+<BrowseEquipScreen>
+	name: "przegladaj sprzet"
+	typesel: typesel
+	kindsel: kindsel
+	srch: srch
+	srchbtn: srchbtn
+	eqplst: eqplst
+	bckbtn: bckbtn
+	
+	id: parent
+
+	FloatLayout:
+					
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.2
+			pos_hint: {"top": 1}
+		
+			Spinner:
+				id: typesel
+				text: "Wybierz typ"
+				values: parent.type
+				on_text: parent.UpdateSpinner2(typesel.text)
+				size_hint: 0.5, 0.10
+			Spinner:
+				id: kindsel
+				text: "Wybierz rodzaj"	
+				values: parent.kind
+				on_text: parent.UpdateContentKind(kindsel.text)
+				size_hint: 0.5, 0.10
+				
+			TextInput:
+				id: srch
+				multiline: False
+				text: ""
+				size_hint: 0.5, 0.10
+			Button:
+				id: srchbtn
+				text: "Szukaj"
+				size_hint: 0.5, 0.10
+				on_press: parent.Search(typesel.text, kindsel.text, srch.text)
+						
+		EqpList:
+			id: eqplst
+			size_hint: 1, 0.7
+			pos_hint: {"x": 0, "y": 0.1}
+			
+		Button:
+			id: bckbtn
+			size_hint: 1, 0.1
+			text: "Powrot"	
+			on_press: parent.GetBack()
+	
+
+</BrowseEquipScreen>
+
+<ChooseTypeOrderBrowseScreen>
+	name: "wybor typu zamowienia przegladanie"
+	usordbtn: usordbtn
+	unusordbtn: unusordbtn
+	bckbtn: bckbtn
+
+	id: parent
+
+	GridLayout:
+		cols: 1
+		rows: 3
+					
+		Button:
+			id: usordbtn
+			text: "Przegladaj zamowienia zuzywalne"
+			on_press: parent.GetToUsOrd()
+		
+		Button:
+			id: unusordbtn
+			text: "Przegladaj zamowienia niezuzywalne"
+			on_press: parent.GetToUnUsOrd()
+
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+
+</ChooseTypeOrderBrowseScreen>
+
+<UsOrdersList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UsOrdersList>
+
+<UnUsOrdersList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnUsOrdersList>
+
+<BrowseUsOrdersScreen>
+	name: "przegladaj zamowienia zuzywalne"
+	ordlst: ordlst
+	bckbtn: bckbtn
+	detailbtn: detailbtn
+	
+	id: parent
+
+	FloatLayout:
+					
+		UsOrdersList:
+			id: ordlst
+			size_hint: 1, 0.9
+			pos_hint: {"top": 1}
+			
+			
+		Button:
+			id: bckbtn
+			size_hint: 0.5, 0.1
+			text: "Powrot"	
+			on_press: parent.GetBack()
+			pos_hint: {"x": 0, "y": 0}
+			
+		Button:
+			id: detailbtn
+			size_hint: 0.5, 0.1
+			text: "Szczegoly"	
+			on_press: parent.GetToDetails()
+			pos_hint: {"x": 0.5, "y": 0}
+</BrowseUsOrdersScreen>
+
+<BrowseUnUsOrdersScreen>
+	name: "przegladaj zamowienia niezuzywalne"
+	ordlst: ordlst
+	bckbtn: bckbtn
+	detailbtn: detailbtn
+	
+	id: parent
+
+	FloatLayout:
+					
+		UsOrdersList:
+			id: ordlst
+			size_hint: 1, 0.9
+			pos_hint: {"top": 1}	
+			
+		Button:
+			id: bckbtn
+			size_hint: 0.5, 0.1
+			text: "Powrot"	
+			on_press: parent.GetBack()
+			pos_hint: {"x": 0, "y": 0}
+			
+		Button:
+			id: detailbtn
+			size_hint: 0.5, 0.1
+			text: "Szczegoly"	
+			pos_hint: {"x": 0.5, "y": 0}
+			on_press: parent.GetToDetails()
+</BrowseUnUsOrdersScreen>
+
+<UsOrderContList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UsOrderContList>
+
+<UnUsOrderContList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnUsOrderContList>
+
+<DetailsUsOrdersScreen>
+	name: "szczegoly zamowienia zuzywalnego"
+	ordlst: ordlst
+	who: who
+	when: when
+	ordernr: ordernr
+	bckbtn: bckbtn
+	
+	id: parent
+
+	BoxLayout:
+		orientation: "horizontal"
+		spacing: 0
+		
+		GridLayout:
+			cols: 1
+			rows: 4
+	
+			Label:
+				id: who
+				text: ""
+			Label:
+				id: when
+				text: ""
+			Label:
+				id: ordernr
+				text: ""
+
+			Button:
+				id: bckbtn
+				text: "Powrot"	
+				on_press: parent.GetBack()
+		
+		UsOrderContList:
+			id: ordlst
+			size_hint: 1, 1 
+			pos_hint: {"x": 0.5}			
+
+</DetailsUsOrdersScreen>
+
+<DetailsUnUsOrdersScreen>
+	name: "szczegoly zamowienia niezuzywalnego"
+	ordlst: ordlst
+	who: who
+	when: when
+	ordernr: ordernr
+	bckbtn: bckbtn
+	
+	id: parent
+
+	BoxLayout:
+		orientation: "horizontal"
+		spacing: 0
+		
+		GridLayout:
+			cols: 1
+			rows: 4
+	
+			Label:
+				id: who
+				text: ""
+			Label:
+				id: when
+				text: ""
+			Label:
+				id: ordernr
+				text: ""
+
+			Button:
+				id: bckbtn
+				text: "Powrot"	
+				on_press: parent.GetBack()
+		
+		UnUsOrderContList:
+			id: ordlst
+			size_hint: 1, 1 
+			pos_hint: {"x": 0.5}			
+
+</DetailsUnUsOrdersScreen>
+
+<ReturnEqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</ReturnEqpList>
+
+<GiveBackEquipScreen>
+	name: "oddaj sprzet"
+	ordlst: ordlst
+	bckbtn: bckbtn
+	returnbtn: returnbtn
+	id: parent
+
+	FloatLayout:
+		
+		ReturnEqpList:
+			id: ordlst
+			size_hint: 1, 0.8
+			pos_hint: {"top": 1}
+		
+		GridLayout:
+			cols: 2
+			size_hint: 1, 0.1
+			Button:
+				id: returnbtn
+				size_hint: 0.5, 0.1
+				text: "Oddaj sprzet"
+				on_press: parent.GetToReturn()
+
+			Button:
+				id: bckbtn
+				size_hint: 0.5, 0.1
+				text: "Powrot"
+				on_press: parent.GetBack()
+	
+</GiveBackEquipScreen>
+
+<ConfirmReturningEqpScreen>
+	name: "potwierdz oddanie sprzetu"
+	confbtn: confbtn 
+	bckbtn: bckbtn
+	eqpcont: eqpcont
+
+	id: parent
+
+	GridLayout:
+		cols: 2
+		rows: 2
+		Label:
+			text: "Oddajesz sprzet:"
+			size_hint: 0.1, 0.5
+		Label:
+			id: eqpcont	
+			size_hint: 0.9, 0.5
+			text: ""
+		Button:
+			id: confbtn
+			size_hint: 0.5, 0.5
+			text: "Zatwierdz"
+			on_press: parent.SubmitReturning()
+		Button:
+			id: bckbtn
+			size_hint: 0.5, 0.5
+			text: "Anuluj"
+			on_press: parent.GetBack()
+		
+
+</ConfirmReturningEqpScreen>
+
+<ChooseTypeOrderScreen>
+	name: "wybor typu zamowienia"
+	usordbtn: usordbtn
+	unusordbtn: unusordbtn
+	bckbtn: bckbtn
+
+	id: parent
+
+	GridLayout:
+		cols: 1
+		rows: 3
+					
+		Button:
+			id: usordbtn
+			text: "Zloz zamowienie zuzywalne"
+			on_press: parent.GetToUsOrd()
+		
+		Button:
+			id: unusordbtn
+			text: "Zloz zamowienie niezuzywalne"
+			on_press: parent.GetToUnUsOrd()
+
+		Button:
+			id: bckbtn
+			text: "Powrot"
+			on_press: parent.GetBack()
+
+</ChooseTypeOrderScreen>
+
+<UsEqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UsEqpList>
+
+<UnUsEqpList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</UnUsEqpList>
+
+<ChosenList>
+	viewclass:'SelectableLabel'
+	SelectableRecycleBoxLayout:
+		default_size: None, dp(56)
+		default_size_hint: 1, None
+		size_hint_y: None
+		height: self.minimum_height
+		orientation: 'vertical'
+		multiselect: False
+		touch_multiselect: False
+</ChosenList>
+
+<MakeUsOrderScreen>
+	name: "zloz zamowienie zuzywalne"
+	kindsel: kindsel
+	srch: srch
+	srchbtn: srchbtn
+	eqplst: eqplst
+	chosenlst: chosenlst
+	num: num
+	bckbtn: bckbtn
+	confbtn: confbtn
+	delbtn: delbtn
+	addbtn: addbtn
+	
+	id: parent
+
+	FloatLayout:
+		Label:
+			text: "Wybierz sprzet z ponizszej listy"
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0, "y": 0.9}
+					
+		Spinner:
+			id: kindsel
+			text: "Wybierz rodzaj"	
+			values: parent.kind
+			on_text: parent.UpdateContentKind(kindsel.text)
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.25, "y": 0.9}
+					
+		TextInput:
+			id: srch
+			multiline: False
+			text: ""
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0, "y": 0.8}
+		Button:
+			id: srchbtn
+			text: "Szukaj"
+			size_hint: 0.25, 0.1
+			on_press: parent.Search(kindsel.text, srch.text)
+			pos_hint: {"x": 0.25, "y": 0.8}
+					
+		UsEqpList:
+			id: eqplst
+			size_hint: 0.5, 0.6
+			pos_hint: {"x": 0, "y": 0.2}
+				
+		Label:
+			text: "Liczba: "
+			size_hint: 0.1, 0.1
+			pos_hint: {"x": 0, "y": 0.1}
+		TextInput:
+			id: num
+			size_hint: 0.4, 0.1
+			pos_hint: {"x": 0.1, "y": 0.1}
+		Button:
+			id: addbtn
+			text: "Dodaj element do zamowienia"
+			size_hint: 0.5, 0.1	
+			pos_hint: {"x": 0, "y": 0}
+			on_press: parent.AddtoCart()
+				
+		Label:
+			pos_hint: {"x": 0.5, "y": 0.9}
+			size_hint: 0.5, 0.1
+			text: "Wybrane sprzety"
+			
+		ChosenList:
+			id: chosenlst
+			size_hint: 0.5, 0.7
+			pos_hint: {"x": 0.5, "y": 0.2}
+
+		Button:
+			text: "Usun z wybranych"
+			id: delbtn
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.5, "y": 0.1}
+			on_press: parent.PopFromCart()
+			
+		Button:
+			text: "Zloz zamowienie"
+			id: confbtn
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.75, "y": 0.1}
+			on_press: parent.SubmitUsOrder()
+			
+		Button:
+			text: "Powrot"
+			id: bckbtn
+			size_hint: 0.5, 0.1
+			pos_hint: {"x": 0.5, "y": 0}
+			on_press: parent.GetBack()
+	
+</MakeUsOrderScreen>
+
+<MakeUnUsOrderScreen>
+	name: "zloz zamowienie niezuzywalne"
+	kindsel: kindsel
+	srch: srch
+	srchbtn: srchbtn
+	eqplst: eqplst
+	chosenlst: chosenlst
+	days: days
+	bckbtn: bckbtn
+	confbtn: confbtn
+	delbtn: delbtn
+	addbtn: addbtn
+	
+	id: parent
+
+	FloatLayout:
+		Label:
+			text: "Wybierz sprzet z ponizszej listy"
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0, "y": 0.9}
+					
+		Spinner:
+			id: kindsel
+			text: "Wybierz rodzaj"	
+			values: parent.kind
+			on_text: parent.UpdateContentKind(kindsel.text)
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.25, "y": 0.9}
+					
+		TextInput:
+			id: srch
+			multiline: False
+			text: ""
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0, "y": 0.8}
+		Button:
+			id: srchbtn
+			text: "Szukaj"
+			size_hint: 0.25, 0.1
+			on_press: parent.Search(kindsel.text, srch.text)
+			pos_hint: {"x": 0.25, "y": 0.8}
+					
+		UsEqpList:
+			id: eqplst
+			size_hint: 0.5, 0.6
+			pos_hint: {"x": 0, "y": 0.2}
+
+		
+		Label:
+			text: "Na ile dni: "
+			size_hint: 0.2, 0.1
+			pos_hint: {"x": 0, "y": 0.1}
+		
+		TextInput:
+			id: days
+			size_hint: 0.3, 0.1
+			pos_hint: {"x": 0.2, "y": 0.1}
+		
+		Button:
+			id: addbtn
+			text: "Dodaj element do zamowienia"
+			size_hint: 0.5, 0.1	
+			pos_hint: {"x": 0, "y": 0}
+			on_press: parent.AddtoCart()
+				
+		Label:
+			pos_hint: {"x": 0.5, "y": 0.9}
+			size_hint: 0.5, 0.1
+			text: "Wybrane sprzety"
+			
+		ChosenList:
+			id: chosenlst
+			size_hint: 0.5, 0.7
+			pos_hint: {"x": 0.5, "y": 0.2}
+
+		Button:
+			text: "Usun z wybranych"
+			id: delbtn
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.5, "y": 0.1}
+			on_press: parent.PopFromCart()
+			
+		Button:
+			text: "Zloz zamowienie"
+			id: confbtn
+			size_hint: 0.25, 0.1
+			pos_hint: {"x": 0.75, "y": 0.1}
+			on_press: parent.SubmitUnUsOrder()
+			
+		Button:
+			text: "Powrot"
+			id: bckbtn
+			size_hint: 0.5, 0.1
+			pos_hint: {"x": 0.5, "y": 0}
+			on_press: parent.GetBack()
+	
+</MakeUnUsOrderScreen>
